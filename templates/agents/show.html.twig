@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agents{% endblock %}
+
+{% block body %}
+    <h1>Agents</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ agent.id }}</td>
+            </tr>
+            <tr>
+                <th>UserId</th>
+                <td>{{ agent.userId }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ agent.username }}</td>
+            </tr>
+            <tr>
+                <th>Fullname</th>
+                <td>{{ agent.fullname }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ agent.gender }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ agent.email }}</td>
+            </tr>
+            <tr>
+                <th>EmailPec</th>
+                <td>{{ agent.emailPec }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ agent.roles ? agent.roles|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateOfBirth</th>
+                <td>{{ agent.dateOfBirth ? agent.dateOfBirth|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>LastLogin</th>
+                <td>{{ agent.lastLogin ? agent.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ agent.createdAt ? agent.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ agent.active ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_agents_index') }}">back to list</a>
+
+    <a href="{{ path('app_agents_edit', {'id': agent.id}) }}">edit</a>
+
+    {{ include('agents/_delete_form.html.twig') }}
+{% endblock %}

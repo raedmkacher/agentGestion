@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agents index{% endblock %}
+
+{% block body %}
+    <h1>Agents index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserId</th>
+                <th>Username</th>
+                <th>Fullname</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>EmailPec</th>
+                <th>Roles</th>
+                <th>DateOfBirth</th>
+                <th>LastLogin</th>
+                <th>CreatedAt</th>
+                <th>Active</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for agent in agents %}
+            <tr>
+                <td>{{ agent.id }}</td>
+                <td>{{ agent.userId }}</td>
+                <td>{{ agent.username }}</td>
+                <td>{{ agent.fullname }}</td>
+                <td>{{ agent.gender }}</td>
+                <td>{{ agent.email }}</td>
+                <td>{{ agent.emailPec }}</td>
+                <td>{{ agent.roles ? agent.roles|join(', ') : '' }}</td>
+                <td>{{ agent.dateOfBirth ? agent.dateOfBirth|date('Y-m-d') : '' }}</td>
+                <td>{{ agent.lastLogin ? agent.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ agent.createdAt ? agent.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ agent.active ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_agents_show', {'id': agent.id}) }}">show</a>
+                    <a href="{{ path('app_agents_edit', {'id': agent.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_agents_new') }}">Create new</a>
+{% endblock %}
